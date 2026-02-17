@@ -37,9 +37,9 @@ export function decodeImage(imageFile: File): Promise<string> {
           let decodedText = '';
 
           // Read pixels and convert back to characters
-          for (let row = 0; row < img.width; row++) {
-            for (let col = 0; col < img.height; col++) {
-              const pixelIndex = (col * img.width + row) * 4;
+          for (let x = 0; x < img.width; x++) {
+            for (let y = 0; y < img.height; y++) {
+              const pixelIndex = (y * img.width + x) * 4;
               const pixelValue = data[pixelIndex]; // Red channel (they're all the same in grayscale)
 
               // Ignore 0 (NULL) values

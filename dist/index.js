@@ -84,15 +84,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     // Copy to clipboard functionality
-    copyBtn.addEventListener('click', () => {
-        decodedOutput.select();
-        document.execCommand('copy');
-        // Visual feedback
-        const originalText = copyBtn.textContent;
-        copyBtn.textContent = 'Copied!';
-        setTimeout(() => {
-            copyBtn.textContent = originalText;
-        }, 2000);
+    copyBtn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(decodedOutput.value);
+            // Visual feedback
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => {
+                copyBtn.textContent = originalText;
+            }, 2000);
+        }
+        catch (error) {
+            console.error('Failed to copy text:', error);
+            alert('Failed to copy text to clipboard');
+        }
     });
     // Enable encode button when text is entered
     textInput.addEventListener('input', () => {

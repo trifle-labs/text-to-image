@@ -31,9 +31,9 @@ export function encodeText(text: string, limit: number = 256): HTMLCanvasElement
   let textIndex = 0;
 
   // Fill pixels with character values
-  for (let row = 0; row < width; row++) {
-    for (let col = 0; col < height; col++) {
-      const pixelIndex = (col * width + row) * 4;
+  for (let x = 0; x < width; x++) {
+    for (let y = 0; y < height; y++) {
+      const pixelIndex = (y * width + x) * 4;
 
       if (textIndex < textLength) {
         const pixelValue = convertCharToInt(text[textIndex], limit);

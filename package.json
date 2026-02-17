@@ -1,0 +1,16 @@
+{
+  "name": "text-to-image",
+  "version": "1.0.0",
+  "description": "Convert text to grayscale images and vice versa - browser implementation",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "keywords": ["text", "image", "encode", "decode", "grayscale"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Image Converter</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Text to Image Converter</h1>
+      <p class="subtitle">Convert text to grayscale images and vice versa</p>
+    </header>
+
+    <div class="tabs">
+      <button id="encode-tab" class="tab active">Encode Text</button>
+      <button id="decode-tab" class="tab">Decode Image</button>
+    </div>
+
+    <!-- Encode Section -->
+    <section id="encode-section" class="section active">
+      <div class="card">
+        <h2>Encode Text to Image</h2>
+        <p class="info">
+          Each pixel in the generated image represents a single character.
+          The grayscale value corresponds to the character's ASCII value.
+        </p>
+        
+        <div class="input-group">
+          <label for="text-input">Enter text to encode:</label>
+          <textarea 
+            id="text-input" 
+            placeholder="Type or paste your text here..."
+            rows="8"
+          ></textarea>
+        </div>
+
+        <button id="encode-btn" class="btn btn-primary" disabled>
+          Generate Image
+        </button>
+
+        <div class="result-area">
+          <h3>Preview:</h3>
+          <div class="canvas-container">
+            <canvas id="preview-canvas"></canvas>
+          </div>
+          <p id="image-size-info" class="image-info" style="display: none;"></p>
+          <button id="download-btn" class="btn btn-secondary" disabled>
+            Download PNG
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Decode Section -->
+    <section id="decode-section" class="section">
+      <div class="card">
+        <h2>Decode Image to Text</h2>
+        <p class="info">
+          Upload a grayscale image that was created with this tool to extract the encoded text.
+        </p>
+        
+        <div class="input-group">
+          <label for="image-input">Select image to decode:</label>
+          <input 
+            type="file" 
+            id="image-input" 
+            accept="image/png,image/jpeg,image/jpg"
+          >
+        </div>
+
+        <button id="decode-btn" class="btn btn-primary" disabled>
+          Decode Image
+        </button>
+
+        <div class="result-area">
+          <h3>Decoded Text:</h3>
+          <textarea 
+            id="decoded-output" 
+            placeholder="Decoded text will appear here..."
+            rows="8"
+            readonly
+          ></textarea>
+          <button id="copy-btn" class="btn btn-secondary" disabled>
+            Copy to Clipboard
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Each pixel represents a character's decimal value (1-255 for 8-bit grayscale).
+        Black pixels (value 0) indicate null terminators.
+      </p>
+      <p class="github-link">
+        <a href="https://github.com/trifle-labs/text-to-image" target="_blank">
+          View on GitHub
+        </a>
+      </p>
+    </footer>
+  </div>
+
+  <script type="module" src="dist/index.js"></script>
+</body>
+</html>

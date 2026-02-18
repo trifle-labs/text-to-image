@@ -10,6 +10,14 @@
   "keywords": ["text", "image", "encode", "decode", "grayscale"],
   "author": "",
   "license": "MIT",
+  "homepage": "https://trifle-labs.github.io/text-to-image/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trifle-labs/text-to-image.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trifle-labs/text-to-image/issues"
+  },
   "devDependencies": {
     "typescript": "^5.3.3"
   }

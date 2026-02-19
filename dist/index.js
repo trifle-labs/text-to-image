@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const encodeSection = document.getElementById('encode-section');
     const decodeSection = document.getElementById('decode-section');
     const textInput = document.getElementById('text-input');
+    const textFileInput = document.getElementById('text-file-input');
     const encodeBtn = document.getElementById('encode-btn');
     const previewCanvas = document.getElementById('preview-canvas');
     const downloadBtn = document.getElementById('download-btn');
@@ -102,6 +103,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Enable encode button when text is entered
     textInput.addEventListener('input', () => {
         encodeBtn.disabled = textInput.value.length === 0;
+    });
+    // Load text file contents into textarea
+    textFileInput.addEventListener('change', () => {
+        const file = textFileInput.files?.[0];
+        if (!file)
+            return;
+        if (!file.type.startsWith('text/') && !file.name.endsWith('.txt')) {
+            alert('Please select a valid text file (.txt)');
+            textFileInput.value = '';
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            textInput.value = e.target?.result ?? '';
+            encodeBtn.disabled = textInput.value.length === 0;
+        };
+        reader.onerror = () => {
+            alert('Failed to read file. Please try again.');
+            textFileInput.value = '';
+        };
+        reader.readAsText(file);
     });
     // Enable decode button when file is selected
     imageInput.addEventListener('change', () => {

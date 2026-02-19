@@ -6,11 +6,12 @@ import { convertCharToInt, getImageSize } from './utilities.js';
  * Encode text into a grayscale image
  * @param text - The text to encode
  * @param limit - The pixel value limit (default 256 for 8-bit)
+ * @param aspectRatio - The desired [width, height] ratio (default [1, 1] for square)
  * @returns A canvas element with the encoded image
  */
-export function encodeText(text, limit = 256) {
+export function encodeText(text, limit = 256, aspectRatio = [1, 1]) {
     const textLength = text.length;
-    const [width, height] = getImageSize(textLength);
+    const [width, height] = getImageSize(textLength, aspectRatio);
     // Create canvas
     const canvas = document.createElement('canvas');
     canvas.width = width;

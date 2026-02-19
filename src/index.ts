@@ -4,6 +4,7 @@
 
 import { encodeText, downloadImage } from './encode.js';
 import { decodeImage } from './decode.js';
+import { ASPECT_RATIOS } from './utilities.js';
 
 // Wait for DOM to be ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const textInput = document.getElementById('text-input') as HTMLTextAreaElement;
   const textFileInput = document.getElementById('text-file-input') as HTMLInputElement;
+  const aspectRatioSelect = document.getElementById('aspect-ratio-select') as HTMLSelectElement;
   const encodeBtn = document.getElementById('encode-btn') as HTMLButtonElement;
   const previewCanvas = document.getElementById('preview-canvas') as HTMLCanvasElement;
   const downloadBtn = document.getElementById('download-btn') as HTMLButtonElement;
@@ -52,7 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      currentCanvas = encodeText(text);
+      const ratioKey = aspectRatioSelect.value;
+      const aspectRatio = ASPECT_RATIOS[ratioKey] ?? [1, 1];
+      currentCanvas = encodeText(text, 256, aspectRatio);
       
       // Display preview
       const ctx = previewCanvas.getContext('2d');
